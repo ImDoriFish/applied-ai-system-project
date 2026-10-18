@@ -82,3 +82,15 @@ Yes
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+
+## 6. Implementation Summary
+Task: one care activity (description, time, frequency, duration, priority, due date, completion status).
+Pet: a pet and its list of tasks. Adding a task stamps it with the pet’s name.
+Owner: the owner’s pets. get_all_tasks() returns every pet’s tasks in one list.
+Scheduler: the “brain.” It reads tasks through Owner.get_all_tasks(), then filters, sorts, detects conflicts and creates the next copy of recurring tasks.
+Task, Pet and Owner only store data, while Scheduler holds all the scheduling logic. Because the Scheduler always goes through the Owner, it works across every pet, not just one.
+    filter_tasks() keeps tasks matching any combination of pet name, completion status and day.
+    sort_tasks() orders tasks by time, priority (ties broken by time) or duration.
+    get_todays_schedule() combines the two: today’s tasks, sorted by time.
+    detect_conflicts() returns warning messages when unfinished tasks share the same date and time.
+    mark_task_complete() completes a task. For daily or weekly tasks, it creates a new task for the next date and adds it to the same pet.
