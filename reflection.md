@@ -5,11 +5,21 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+My initial UML design has four classes: Task, Pet, Owner and Scheduler. They connect in a chain: an Owner has many Pets, and each Pet has many Tasks. The Scheduler sits on top and uses the Owner to reach all tasks across every pet
 - What classes did you include, and what responsibilities did you assign to each?
+
+- Scheduler: The “brain” of the app. It gets all tasks through the Owner and organizes them by sorting, filtering, detecting conflicts and handling recurring tasks. It’s the only class with real scheduling logic. The other three mainly hold data.
+
+- Owner: Represents the person using the app. It stores the owner’s name and their pets, and it can add a pet and return every task from all pets in one list.
+
+- Pet: Represents one pet. It stores the pet’s name, species and its list of tasks, and it can add a task to that list.
+
+- Task: Represents one care activity, such as a feeding, walk or medication. It stores a description, time, frequency and completion status, and it can mark itself complete.
 
 **b. Design changes**
 
 - Did your design change during implementation?
+
 - If yes, describe at least one change and why you made it.
 
 ---
