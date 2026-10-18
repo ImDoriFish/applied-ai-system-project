@@ -133,14 +133,102 @@ All 10 tests pass, including the required sorting, recurrence and conflict tests
 | Conflict handling | `Scheduler.detect_conflicts()` | Warns when two or more unfinished tasks (same or different pets) share the same date and start time. Returns warnings instead of crashing. |
 | Recurring tasks | `Scheduler.mark_task_complete(task)` | When a daily or weekly task is completed, creates a new one for the next day (`+1 day`) or week (`+7 days`) using `timedelta`. |
 
-## 📸 Demo Walkthrough
 
-Describe your app in numbered steps so a reader can follow along without watching a video:
+## ✨ Features
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+- **Multi-pet tracking:** add several pets and schedule care tasks for each one.
+- **Daily schedule:** today's tasks for all pets in one plan, sorted by time.
+- **Flexible sorting:** sort by time, by priority (high → low, ties broken by time), or by duration.
+- **Filtering:** show tasks for one pet, hide completed tasks, or view a specific day.
+- **Conflict warnings:** flags unfinished tasks booked at the same date and time, for the same pet or different pets.
+- **Daily and weekly recurrence:** completing a repeating task automatically creates the next one (+1 day or +7 days).
+- **Duplicate protection:** completing a task twice doesn't create extra copies.
+- **Time validation:** rejects times that aren't 24-hour `HH:MM` (like `9:00` or `25:00`) with a clear error.
+- **Safe editing:** `update()` only allows editable fields, so a task can't be moved to the wrong pet by accident.
+
+Run the app with `streamlit run app.py`.
+
+### Main UI features
+
+- **Owner:** set the owner's name.
+- **Add a Pet:** enter a name and species. Blank or duplicate names are rejected.
+- **Schedule a Task:** pick a pet, then enter the task, time, duration, priority, and whether it repeats (once, daily, weekly).
+- **Today's Schedule:** a summary line (tasks, done, pending), conflict warnings, and a table of today's tasks with **Sort by**, **Pet**, and **Show completed** controls.
+- **Mark a Task Complete:** choose a pending task from the dropdown and click **Done**.
+
+### Example workflow
+
+1. Add two pets: **Mochi** (dog) and **Biscuit** (cat).
+2. Schedule **Breakfast** for Mochi at 08:00, repeating **daily**, priority high.
+3. Schedule **Vet visit** for Mochi at 09:00 and **Litter box** for Biscuit at 09:00.
+4. Schedule **Evening walk** for Mochi at 18:00.
+5. Look at **Today's Schedule**: the tasks appear in time order, and a yellow warning says Vet visit and Litter box clash at 09:00.
+6. Change **Sort by** to *priority*: high-priority tasks move to the top.
+7. Set **Pet** to *Biscuit*: only Litter box is shown.
+8. Mark **Breakfast** as done: a green message confirms it, and the next Breakfast is scheduled for tomorrow.
+
+### Key Scheduler behaviors shown
+
+- **Sorting:** `Scheduler.sort_tasks()` orders tasks by time, priority, or duration.
+- **Filtering:** `Scheduler.filter_tasks()` narrows by pet, completion status, and date.
+- **Conflict warnings:** `Scheduler.detect_conflicts()` returns warnings, shown with `st.warning`.
+- **Recurrence:** `Scheduler.mark_task_complete()` creates the next daily or weekly task.
 
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or link to a demo video here -->
+### Sample CLI output (`python main.py`)
+
+```
+Today's Schedule
+-------------------------------------------------------
+  [ ] 2026-10-18  08:00  Breakfast      Mochi    high
+  [ ] 2026-10-18  09:00  Vet visit      Mochi    high
+  [ ] 2026-10-18  09:00  Litter box     Biscuit  low
+  [ ] 2026-10-18  18:00  Evening walk   Mochi    medium
+
+All tasks (as added)
+-------------------------------------------------------
+  [ ] 2026-10-18  18:00  Evening walk   Mochi    medium
+  [ ] 2026-10-18  08:00  Breakfast      Mochi    high
+  [ ] 2026-10-18  09:00  Vet visit      Mochi    high
+  [ ] 2026-10-18  09:00  Litter box     Biscuit  low
+
+Sorted by time
+-------------------------------------------------------
+  [ ] 2026-10-18  08:00  Breakfast      Mochi    high
+  [ ] 2026-10-18  09:00  Vet visit      Mochi    high
+  [ ] 2026-10-18  09:00  Litter box     Biscuit  low
+  [ ] 2026-10-18  18:00  Evening walk   Mochi    medium
+
+Sorted by priority
+-------------------------------------------------------
+  [ ] 2026-10-18  08:00  Breakfast      Mochi    high
+  [ ] 2026-10-18  09:00  Vet visit      Mochi    high
+  [ ] 2026-10-18  18:00  Evening walk   Mochi    medium
+  [ ] 2026-10-18  09:00  Litter box     Biscuit  low
+
+Mochi's tasks only
+-------------------------------------------------------
+  [ ] 2026-10-18  18:00  Evening walk   Mochi    medium
+  [ ] 2026-10-18  08:00  Breakfast      Mochi    high
+  [ ] 2026-10-18  09:00  Vet visit      Mochi    high
+
+Conflicts
+-------------------------------------------------------
+  ⚠ Conflict on 2026-10-18 at 09:00: Vet visit (Mochi), Litter box (Biscuit)
+
+Completed 'Breakfast'. Next one created for 2026-10-19.
+
+Pending tasks
+-------------------------------------------------------
+  [ ] 2026-10-18  18:00  Evening walk   Mochi    medium
+  [ ] 2026-10-18  09:00  Vet visit      Mochi    high
+  [ ] 2026-10-19  08:00  Breakfast      Mochi    high
+  [ ] 2026-10-18  09:00  Litter box     Biscuit  low
+
+Time format validation
+-------------------------------------------------------
+  ✗ Invalid time '9:00'. Use 24-hour HH:MM format, e.g. '09:00'.
+  ✗ Invalid time '25:00'. Use 24-hour HH:MM format, e.g. '09:00'.
+  ✗ Invalid time '9am'. Use 24-hour HH:MM format, e.g. '09:00'.
+```
+

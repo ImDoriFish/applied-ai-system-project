@@ -1,3 +1,5 @@
+from datetime import date
+
 import streamlit as st
 from pawpal_system import Owner, Pet, Task, Scheduler
 
@@ -78,8 +80,40 @@ st.divider()
 
 # --- Today's schedule ---
 st.subheader("Today's Schedule")
-schedule = scheduler.get_todays_schedule()
-if schedule:
+
+# Message saved from the last "Done" click (shown once after the page reruns)
+if "flash" in st.session_state:
+    st.success(st.session_state.pop("flash"))
+
+todays = scheduler.get_todays_schedule()
+done_count = len([t for t in todays if t.completed])
+st.caption(f"{len(todays)} tasks today · {done_count} done · {len(todays) - done_count} pending")
+
+# Conflict warnings come first so the owner sees them before the schedule
+conflicts = scheduler.detect_conflicts()
+if conflicts:
+    for warning in conflicts:
+        st.warning(f"⚠️ {warning}  \nConsider moving one of these tasks to a different time.")
+elif todays:
+    st.success("✅ No scheduling conflicts.")
+
+# View controls: sort and filter using the Scheduler's methods
+col1, col2, col3 = st.columns(3)
+with col1:
+    sort_by = st.selectbox("Sort by", ["time", "priority", "duration"])
+with col2:
+    pet_filter = st.selectbox("Pet", ["All"] + [p.name for p in owner.pets])
+with col3:
+    show_completed = st.checkbox("Show completed", value=True)
+
+view = scheduler.filter_tasks(
+    pet_name=None if pet_filter == "All" else pet_filter,
+    completed=None if show_completed else False,
+    day=date.today(),
+)
+view = scheduler.sort_tasks(view, by=sort_by)
+
+if view:
     st.table(
         [
             {
@@ -91,8 +125,27 @@ if schedule:
                 "Repeats": t.frequency,
                 "Done": "✅" if t.completed else "",
             }
-            for t in schedule
+            for t in view
         ]
     )
+elif todays:
+    st.info("No tasks match these filters.")
 else:
     st.info("No tasks scheduled for today.")
+
+# --- Mark a task complete ---
+st.subheader("Mark a Task Complete")
+pending = scheduler.sort_tasks(scheduler.filter_tasks(completed=False, day=date.today()), by="time")
+if not pending:
+    st.info("Nothing left to do today. 🎉" if todays else "No tasks to complete yet.")
+else:
+    labels = [f"{t.time}  {t.description} ({t.pet_name})" for t in pending]
+    choice = st.selectbox("Task", range(len(pending)), format_func=lambda i: labels[i])
+    if st.button("Done"):
+        task = pending[choice]
+        next_task = scheduler.mark_task_complete(task)
+        message = f"✅ {task.description} for {task.pet_name} is done!"
+        if next_task is not None:
+            message += f" Next one scheduled for {next_task.due_date}."
+        st.session_state.flash = message
+        st.rerun()

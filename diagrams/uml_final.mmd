@@ -1,0 +1,42 @@
+classDiagram
+    class Task {
+        +str description
+        +str time
+        +str frequency
+        +int duration
+        +str priority
+        +date due_date
+        +bool completed
+        +str pet_name
+        +__post_init__()
+        +mark_complete()
+        +update(field_name, value)
+    }
+    class Pet {
+        +str name
+        +str species
+        +List~Task~ tasks
+        +add_task(task)
+        +remove_task(task)
+        +get_tasks() List~Task~
+    }
+    class Owner {
+        +str name
+        +List~Pet~ pets
+        +add_pet(pet)
+        +get_pet(name) Pet
+        +get_all_tasks() List~Task~
+    }
+    class Scheduler {
+        +Owner owner
+        +get_todays_schedule() List~Task~
+        +sort_tasks(tasks, by) List~Task~
+        +filter_tasks(pet_name, completed, day) List~Task~
+        +detect_conflicts() List~str~
+        +mark_task_complete(task) Task
+    }
+    Owner "1" --> "*" Pet : has
+    Pet "1" --> "*" Task : has
+    Scheduler --> Owner : reads tasks via get_all_tasks()
+    Scheduler ..> Task : creates next occurrence
+    note for Task "time must be HH:MM, checked by validate_time()"
