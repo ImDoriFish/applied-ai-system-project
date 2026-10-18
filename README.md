@@ -91,19 +91,36 @@ Pending tasks
 
 ## 🧪 Testing PawPal+
 
-```bash
-# Run the full test suite:
-pytest
+Run the test suite from the project folder:
 
-# Run with coverage:
-pytest --cov
+```bash
+python -m pytest
 ```
+
+The tests in `tests/test_pawpal.py` cover:
+
+- **Basics:** marking a task complete, and adding a task to a pet
+- **Sorting:** tasks added out of order come back in chronological order
+- **Recurring tasks:** a daily task creates a new task for the next day; one-time tasks don't repeat; completing a task twice doesn't create duplicates
+- **Conflict detection:** two tasks at the same date and time are flagged; the same time on different days isn't; completed tasks don't count
+- **Edge cases:** a pet with no tasks gives an empty schedule without crashing
 
 Sample test output:
 
 ```
-# Paste your pytest output here
+====================================== test session starts =======================================
+platform win32 -- Python 3.13.0, pytest-9.1.1, pluggy-1.7.0
+rootdir: C:\Users\khang\CodePath\week 5\ai110-module2show-pawpal-starter
+plugins: anyio-4.15.1
+collected 10 items
+
+tests\test_pawpal.py ..........                                                             [100%]
+
+======================================= 10 passed in 0.05s =======================================
 ```
+
+**Confidence Level:** ⭐⭐⭐⭐☆ (4/5)
+All 10 tests pass, including the required sorting, recurrence and conflict tests and several edge cases. I'm not giving 5 stars because conflict detection only checks exact start times, not overlapping durations, and the Streamlit UI is only tested by hand.
 
 ## 📐 Smarter Scheduling
 
