@@ -19,9 +19,12 @@ My initial UML design has four classes: Task, Pet, Owner and Scheduler. They con
 **b. Design changes**
 
 - Did your design change during implementation?
+Yes
 
 - If yes, describe at least one change and why you made it.
-
+1) Redesigned filtering and sorting (my idea). Instead of separate methods for each kind of filter or sort, I used one filter_tasks(pet_name, completed, day) that can combine filters and one sort_tasks(tasks, by) that can sort by time, priority or duration. I kept get_todays_schedule() as a shortcut that filters by today and then sorts by time.
+2) Added pet_name to Task (from the AI review). In my first design, a task didn’t know which pet it belonged to. Once Owner.get_all_tasks() merges every pet’s tasks into one list, the scheduler couldn’t filter by pet or show which pet a task was for. I considered returning (pet_name, task) tuples instead, but chose to store pet_name on the task so every Scheduler method could work with plain Task objects. Pet.add_task() sets it automatically.
+3) Added Owner.get_pet() for easier lookup.
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
