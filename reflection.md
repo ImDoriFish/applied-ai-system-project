@@ -37,8 +37,9 @@ Yes
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
+One tradeoff I made is that the conflict detection only checks if two tasks have the exact same start time. It does not check their duration, so for example if I have a 60-minute vet appointment at 9:00 and another task at 9:30, the system would not detect that as a conflict even though they overlap. 
 - Why is that tradeoff reasonable for this scenario?
-
+I think this is reasonable for this project because most pet care tasks like feeding, walking, or giving medication are usually pretty short. Checking only the exact time also keeps the logic simple and easy to understand instead of having to compare every task with every other task.
 ---
 
 ## 3. AI Collaboration

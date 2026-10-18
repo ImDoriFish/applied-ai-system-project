@@ -5,6 +5,18 @@ from datetime import date, timedelta
 from typing import List, Optional
 
 
+def validate_time(value: str) -> None:
+    """Raise a ValueError unless value is a 24-hour 'HH:MM' time like '09:00'."""
+    message = f"Invalid time '{value}'. Use 24-hour HH:MM format, e.g. '09:00'."
+    if not isinstance(value, str) or len(value) != 5 or value[2] != ":":
+        raise ValueError(message)
+    hour, minute = value[:2], value[3:]
+    if not (hour.isdigit() and minute.isdigit()):
+        raise ValueError(message)
+    if int(hour) > 23 or int(minute) > 59:
+        raise ValueError(message)
+
+
 @dataclass
 class Task:
     """A single pet care activity."""
@@ -18,6 +30,10 @@ class Task:
     completed: bool = False
     pet_name: str = ""              # set by Pet.add_task()
 
+    def __post_init__(self) -> None:
+        """Validate the time as soon as a Task is created."""
+        validate_time(self.time)
+
     def mark_complete(self) -> None:
         """Mark this task as done."""
         self.completed = True
@@ -27,6 +43,7 @@ class Task:
         if field_name == "description":
             self.description = value
         elif field_name == "time":
+            validate_time(value)
             self.time = value
         elif field_name == "frequency":
             self.frequency = value

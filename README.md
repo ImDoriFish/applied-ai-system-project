@@ -87,7 +87,7 @@ Pending tasks
 
 
 
-  
+
 
 ## 🧪 Testing PawPal+
 
@@ -109,12 +109,12 @@ Sample test output:
 
 > Fill in once you've implemented scheduling logic.
 
-| Feature | Method(s) | Notes |
+ Feature | Method(s) | Notes |
 |---------|-----------|-------|
-| Task sorting | | e.g., by priority, duration |
-| Filtering | | e.g., skip tasks if time runs out |
-| Conflict handling | | e.g., overlapping time slots |
-| Recurring tasks | | e.g., daily vs. weekly |
+| Task sorting | `Scheduler.sort_tasks(tasks, by)` | Sorts by `"time"` (default), `"priority"` (high → low, ties broken by time), or `"duration"`. |
+| Filtering | `Scheduler.filter_tasks(pet_name, completed, day)` | Filter by pet, completion status, and/or date, in any combination. |
+| Conflict handling | `Scheduler.detect_conflicts()` | Warns when two or more unfinished tasks (same or different pets) share the same date and start time. Returns warnings instead of crashing. |
+| Recurring tasks | `Scheduler.mark_task_complete(task)` | When a daily or weekly task is completed, creates a new one for the next day (`+1 day`) or week (`+7 days`) using `timedelta`. |
 
 ## 📸 Demo Walkthrough
 

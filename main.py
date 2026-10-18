@@ -3,12 +3,12 @@ from pawpal_system import Owner, Pet, Task, Scheduler
 
 def print_tasks(title, tasks):
     print(f"\n{title}")
-    print("-" * 40)
+    print("-" * 55)
     if not tasks:
         print("  (no tasks)")
     for t in tasks:
         status = "✓" if t.completed else " "
-        print(f"  [{status}] {t.time}  {t.description:<14} {t.pet_name:<8} {t.priority}")
+        print(f"  [{status}] {t.due_date}  {t.time}  {t.description:<14} {t.pet_name:<8} {t.priority}")
 
 
 owner = Owner("Jordan")
@@ -26,11 +26,13 @@ mochi.add_task(Task("Vet visit", "09:00", priority="high", duration=60))   # sam
 scheduler = Scheduler(owner)
 
 print_tasks("Today's Schedule", scheduler.get_todays_schedule())
+print_tasks("All tasks (as added)", owner.get_all_tasks())
+print_tasks("Sorted by time", scheduler.sort_tasks(owner.get_all_tasks(), by="time"))
 print_tasks("Sorted by priority", scheduler.sort_tasks(owner.get_all_tasks(), by="priority"))
 print_tasks("Mochi's tasks only", scheduler.filter_tasks(pet_name="Mochi"))
 
 print("\nConflicts")
-print("-" * 40)
+print("-" * 55)
 for warning in scheduler.detect_conflicts():
     print(f"  ⚠ {warning}")
 
@@ -38,3 +40,11 @@ breakfast = mochi.get_tasks()[1]
 next_task = scheduler.mark_task_complete(breakfast)
 print(f"\nCompleted '{breakfast.description}'. Next one created for {next_task.due_date}.")
 print_tasks("Pending tasks", scheduler.filter_tasks(completed=False))
+
+print("\nTime format validation")
+print("-" * 55)
+for bad_time in ["9:00", "25:00", "9am"]:
+    try:
+        Task("Bad task", bad_time)
+    except ValueError as error:
+        print(f"  ✗ {error}")
