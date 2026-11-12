@@ -1,0 +1,114 @@
+2026-11-12 14:01:11,613 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:01:11,618 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:01:14,250 WARNING Gemini server error (attempt 1): 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-11-12 14:01:17,759 WARNING Gemini server error (attempt 2): 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-11-12 14:01:17,760 ERROR Gemini API error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-11-12 14:01:17,761 INFO Question: 'my dog ate chocolate' (pet=None, species=None)
+2026-11-12 14:01:17,761 WARNING Emergency detected: 'my dog ate chocolate'
+2026-11-12 14:11:13,062 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:11:13,066 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:11:21,955 INFO Answered by gemini-3.6-flash
+2026-11-12 14:11:21,958 INFO Gemini returned 0 suggestions, 0 rejected
+2026-11-12 14:11:21,959 INFO Question: 'my dog ate chocolate' (pet=None, species=None)
+2026-11-12 14:11:21,959 WARNING Emergency detected: 'my dog ate chocolate'
+2026-11-12 14:12:43,898 INFO Answered by gemini-3.6-flash
+2026-11-12 14:14:45,950 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:14:45,953 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:14:55,568 INFO Answered by gemini-3.6-flash
+2026-11-12 14:14:55,571 INFO Gemini returned 4 suggestions, 0 rejected
+2026-11-12 14:15:05,048 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:15:05,051 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:15:12,911 INFO Answered by gemini-3.6-flash
+2026-11-12 14:15:12,915 INFO Gemini returned 4 suggestions, 0 rejected
+2026-11-12 14:23:11,070 INFO Question: 'What should i feed my dog' (pet=chichi, species=dog)
+2026-11-12 14:23:11,087 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:24:24,343 WARNING Gemini server error on gemini-3.6-flash: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-11-12 14:24:29,355 INFO Answered by gemini-3.5-flash-lite
+2026-11-12 14:24:29,358 INFO Gemini returned 4 suggestions, 0 rejected
+2026-11-12 14:24:42,500 INFO Human approved 3 of 4 AI suggestions for chichi
+2026-11-12 14:25:47,241 INFO Question: 'my dog is having a seizure' (pet=chichi, species=dog)
+2026-11-12 14:25:47,241 WARNING Emergency detected: 'my dog is having a seizure'
+2026-11-12 14:27:14,572 INFO Question: 'what should my dog eat' (pet=chichi, species=dog)
+2026-11-12 14:27:14,585 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:29:25,594 INFO Question: 'what should my dog do' (pet=chichi, species=dog)
+2026-11-12 14:29:25,617 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:29:35,620 INFO Answered by gemini-3.6-flash
+2026-11-12 14:29:35,629 INFO Gemini returned 5 suggestions, 0 rejected
+2026-11-12 14:35:32,894 INFO Question: '' (pet=None, species=None)
+2026-11-12 14:35:32,897 INFO Question: 'dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog' (pet=None, species=None)
+2026-11-12 14:35:32,897 WARNING Question too long (799 characters)
+2026-11-12 14:35:32,900 INFO Question: 'my dog ate chocolate' (pet=None, species=None)
+2026-11-12 14:35:32,900 WARNING Emergency detected: 'my dog ate chocolate'
+2026-11-12 14:35:32,903 INFO Question: 'write my essay' (pet=None, species=None)
+2026-11-12 14:35:32,909 INFO No matching notes found
+2026-11-12 14:35:32,911 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:35:32,916 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:35:32,916 INFO Gemini returned 1 suggestions, 0 rejected
+2026-11-12 14:35:32,918 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:35:32,923 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:35:32,923 ERROR Gemini returned invalid JSON: 'this is not json'
+2026-11-12 14:35:32,925 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:35:32,929 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:35:32,929 ERROR Gemini API error: GEMINI_API_KEY is missing from your .env file.
+2026-11-12 14:35:46,289 INFO Question: '' (pet=None, species=None)
+2026-11-12 14:35:46,290 INFO Question: 'dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog dog' (pet=None, species=None)
+2026-11-12 14:35:46,290 WARNING Question too long (799 characters)
+2026-11-12 14:35:46,291 INFO Question: 'my dog ate chocolate' (pet=None, species=None)
+2026-11-12 14:35:46,291 WARNING Emergency detected: 'my dog ate chocolate'
+2026-11-12 14:35:46,292 INFO Question: 'write my essay' (pet=None, species=None)
+2026-11-12 14:35:46,295 INFO No matching notes found
+2026-11-12 14:35:46,297 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:35:46,299 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:35:46,300 INFO Gemini returned 1 suggestions, 0 rejected
+2026-11-12 14:35:46,301 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:35:46,304 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:35:46,304 ERROR Gemini returned invalid JSON: 'this is not json'
+2026-11-12 14:35:46,306 INFO Question: 'what should my puppy eat' (pet=Max, species=dog)
+2026-11-12 14:35:46,309 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog water and habitat cleaning, dog_care.md - Dog exercise and enrichment
+2026-11-12 14:35:46,309 ERROR Gemini API error: GEMINI_API_KEY is missing from your .env file.
+2026-11-12 14:42:59,374 INFO Question: 'What should my 3-month-old puppy eat?' (pet=Max, species=dog)
+2026-11-12 14:42:59,379 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog health care and vet visits, dog_care.md - Dog water and habitat cleaning
+2026-11-12 14:43:07,153 INFO Answered by gemini-3.6-flash
+2026-11-12 14:43:07,158 INFO Gemini returned 4 suggestions, 0 rejected
+2026-11-12 14:43:08,159 INFO Question: 'What daily routine does my kitten need?' (pet=Luna, species=cat)
+2026-11-12 14:43:08,166 INFO Retrieved: cat_care.md - Cat feeding, cat_care.md - Cat water and habitat cleaning, cat_care.md - Cat exercise and enrichment
+2026-11-12 14:43:19,902 INFO Answered by gemini-3.6-flash
+2026-11-12 14:43:19,902 INFO Gemini returned 6 suggestions, 0 rejected
+2026-11-12 14:43:20,903 INFO Question: 'How do I take care of my rabbit every day?' (pet=Clover, species=rabbit)
+2026-11-12 14:43:20,906 INFO Retrieved: rabbit_care.md - Rabbit health care and vet visits, rabbit_care.md - Rabbit water and habitat cleaning, rabbit_care.md - Rabbit feeding
+2026-11-12 14:43:30,651 INFO Answered by gemini-3.6-flash
+2026-11-12 14:43:30,652 INFO Gemini returned 6 suggestions, 0 rejected
+2026-11-12 14:43:31,653 INFO Question: 'How often should I clean my fish tank?' (pet=Bubbles, species=fish)
+2026-11-12 14:43:31,661 INFO Retrieved: fish_care.md - Fish grooming, fish_care.md - Fish water and habitat cleaning, fish_care.md - Fish exercise and enrichment
+2026-11-12 14:43:43,123 INFO Answered by gemini-3.6-flash
+2026-11-12 14:43:43,125 INFO Gemini returned 4 suggestions, 0 rejected
+2026-11-12 14:43:44,126 INFO Question: 'What does my budgie need each day?' (pet=Kiwi, species=bird)
+2026-11-12 14:43:44,143 INFO Retrieved: bird_care.md - Bird feeding, bird_care.md - Bird water and habitat cleaning, bird_care.md - Bird exercise and enrichment
+2026-11-12 14:43:52,390 INFO Answered by gemini-3.6-flash
+2026-11-12 14:43:52,393 INFO Gemini returned 5 suggestions, 0 rejected
+2026-11-12 14:43:53,396 INFO Question: 'My dog ate chocolate' (pet=Max, species=dog)
+2026-11-12 14:43:53,396 WARNING Emergency detected: 'My dog ate chocolate'
+2026-11-12 14:43:54,411 INFO Question: 'Write my history essay' (pet=None, species=None)
+2026-11-12 14:43:54,416 INFO No matching notes found
+2026-11-12 14:43:55,417 INFO Question: '' (pet=None, species=None)
+2026-11-12 14:43:56,418 INFO Question: 'What vaccines does my ferret need?' (pet=None, species=None)
+2026-11-12 14:43:56,423 INFO Retrieved: cat_care.md - Cat exercise and enrichment, cat_care.md - Cat grooming, cat_care.md - Cat health care and vet visits
+2026-11-12 14:44:01,143 INFO Answered by gemini-3.6-flash
+2026-11-12 14:44:01,144 INFO Gemini returned 0 suggestions, 0 rejected
+2026-11-12 14:44:01,144 WARNING No usable tasks. Gemini's answer was: 'The provided pet care notes do not contain any information about ferrets or their vaccination requirements. The notes strictly cover cat care, grooming, and general feline veterinary visits. Therefore, I cannot provide recommendations or task schedules for ferret vaccinations based on these records.'
+2026-11-12 15:41:14,869 INFO Question: 'What should my 3-month-old puppy eat?' (pet=Max, species=dog)
+2026-11-12 15:41:14,875 INFO Retrieved: dog_care.md - Dog feeding, dog_care.md - Dog health care and vet visits, dog_care.md - Dog water and habitat cleaning
+2026-11-12 15:41:16,409 WARNING Gemini server error on gemini-3.6-flash: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-11-12 15:41:18,464 INFO Answered by gemini-3.5-flash-lite
+2026-11-12 15:41:18,465 INFO Gemini returned 3 suggestions, 0 rejected
+2026-11-12 15:41:18,465 INFO Question: 'How often should I clean my fish tank?' (pet=Bubbles, species=fish)
+2026-11-12 15:41:18,468 INFO Retrieved: fish_care.md - Fish grooming, fish_care.md - Fish water and habitat cleaning, fish_care.md - Fish exercise and enrichment
+2026-11-12 15:41:19,140 ERROR Gemini API error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://aistudio.google.com/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.6-flash, description: Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.\nPlease retry in 10h18m40.829205696s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://aistudio.google.com/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'description': 'Generate content requests per day limit exceeded on Free Tier. See https://aistudio.google.com/docs/rate-limits.', 'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3.6-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '37120s'}]}}
+2026-11-12 15:41:19,141 INFO Question: 'My dog ate chocolate' (pet=Max, species=dog)
+2026-11-12 15:41:19,141 WARNING Emergency detected: 'My dog ate chocolate'
+2026-11-12 15:41:19,141 INFO Question: 'What vaccines does my ferret need?' (pet=None, species=None)
+2026-11-12 15:41:19,146 INFO Retrieved: cat_care.md - Cat exercise and enrichment, cat_care.md - Cat grooming, cat_care.md - Cat health care and vet visits
+2026-11-12 15:41:20,396 WARNING Gemini server error on gemini-3.6-flash: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+2026-11-12 15:41:21,995 INFO Answered by gemini-3.5-flash-lite
+2026-11-12 15:41:21,995 INFO Gemini returned 0 suggestions, 0 rejected
+2026-11-12 15:41:21,995 WARNING No usable tasks. Gemini's answer was: 'The provided pet care notes only cover cat care and do not contain any information regarding ferrets or the vaccines they need.'

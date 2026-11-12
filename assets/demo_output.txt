@@ -1,0 +1,29 @@
+======================================================================
+Input:   'What should my 3-month-old puppy eat?'   (pet=Max, species=dog)
+----------------------------------------------------------------------
+Answer:  For a 3-month-old puppy like Max, the notes state that puppies aged 3 to 6 months should be fed 3 meals a day. You can schedule these meals at 07:00, 12:00, and 17:00 as suggested in the example. Additionally, extras like cooked eggs or vegetables should make up no more than 10% of his daily food.
+Sources: dog_care.md - Dog feeding, dog_care.md - Dog health care and vet visits, dog_care.md - Dog water and habitat cleaning
+Suggested tasks (3), waiting for human approval:
+  07:00  Morning feeding              daily   high    15 min  (dog_care.md - Dog feeding)
+  12:00  Midday feeding               daily   high    15 min  (dog_care.md - Dog feeding)
+  17:00  Evening feeding              daily   high    15 min  (dog_care.md - Dog feeding)
+======================================================================
+Input:   'How often should I clean my fish tank?'   (pet=Bubbles, species=fish)
+----------------------------------------------------------------------
+Answer:  The AI service is unavailable right now. Please try again in a minute.
+Sources: fish_care.md - Fish grooming, fish_care.md - Fish water and habitat cleaning, fish_care.md - Fish exercise and enrichment
+Suggested tasks: none
+======================================================================
+Input:   'My dog ate chocolate'   (pet=Max, species=dog)
+----------------------------------------------------------------------
+Answer:  This sounds like it could be an emergency. Please contact your veterinarian or an emergency animal hospital right away. For possible poisoning, you can also call ASPCA Animal Poison Control at (888) 426-4435. PawPal+ cannot help with emergencies, so no tasks were scheduled.
+Emergency: YES -> no tasks scheduled
+Sources: emergencies.md
+Suggested tasks: none
+======================================================================
+Input:   'What vaccines does my ferret need?'   (pet=None, species=None)
+----------------------------------------------------------------------
+Answer:  The provided pet care notes only cover cat care and do not contain any information regarding ferrets or the vaccines they need.
+Sources: cat_care.md - Cat exercise and enrichment, cat_care.md - Cat grooming, cat_care.md - Cat health care and vet visits
+Suggested tasks: none
+======================================================================

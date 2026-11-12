@@ -1,0 +1,15 @@
+flowchart TD
+    A([User asks a question]) --> B{Guardrails<br/>empty? emergency?}
+    B -->|problem| STOP[Safe message<br/>e.g. contact a vet]
+    B -->|ok| C[Retriever<br/>finds matching notes]
+    KB[(Pet care notes<br/>knowledge/)] --> C
+    C --> D[Gemini<br/>suggests tasks from notes]
+    D --> E{Validator<br/>checks time, frequency,<br/>priority}
+    E -->|invalid| STOP
+    E -->|valid| F[👤 Human review<br/>edit, untick, approve]
+    F --> G[PawPal+ Scheduler<br/>original project]
+    G --> H([Today's Schedule])
+
+    T[🧪 pytest + evaluate.py] -.tests.-> C
+    T -.tests.-> E
+    L[(📝 Log file)] -.records.-> F
