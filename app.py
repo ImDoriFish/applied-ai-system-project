@@ -2,6 +2,7 @@ from datetime import date
 
 import streamlit as st
 from pawpal_system import Owner, Pet, Task, Scheduler
+from ai_assistant import ask_ai, logger
 
 st.set_page_config(page_title="PawPal+", page_icon="🐾", layout="centered")
 
@@ -32,7 +33,8 @@ owner.name = st.text_input("Owner name", value=owner.name)
 st.subheader("Add a Pet")
 with st.form("add_pet_form", clear_on_submit=True):
     new_pet_name = st.text_input("Pet name")
-    species = st.selectbox("Species", ["dog", "cat", "other"])
+    species = st.selectbox("Species", ["dog", "cat", "rabbit", "guinea pig", "hamster",
+                                    "fish", "bird", "reptile", "turtle", "other"])
     if st.form_submit_button("Add pet"):
         name = new_pet_name.strip()
         if not name:
@@ -73,8 +75,117 @@ else:
                     duration=int(duration),
                     priority=priority,
                 )
+                
                 owner.get_pet(pet_choice).add_task(task)
                 st.success(f"Added '{task.description}' for {pet_choice} at {task.time}.")
+# --- Ask the AI ---
+st.subheader("🤖 Ask the AI")
+if not owner.pets:
+    st.info("Add a pet first.")
+else:
+    with st.form("ai_form"):
+        ai_pet_name = st.selectbox("Pet", [p.name for p in owner.pets], key="ai_pet_select")
+        question = st.text_area("Question", placeholder="What should my 3-month-old puppy's daily routine be?")
+        if st.form_submit_button("Ask"):
+            pet = owner.get_pet(ai_pet_name)
+            with st.spinner("Looking up pet care notes and asking Gemini..."):
+                st.session_state.ai_result = ask_ai(question, pet.name, pet.species)
+            st.session_state.ai_pet = pet.name
+            st.session_state.ai_round = st.session_state.get("ai_round", 0) + 1
+
+    result = st.session_state.get("ai_result")
+    if result:
+        # 1. The answer (red if it's an emergency)
+        if result["emergency"]:
+            st.error(f"🚨 {result['answer']}")
+        else:
+            st.info(result["answer"])
+        if result["sources"]:
+            st.caption("Sources: " + ", ".join(result["sources"]))
+
+        # 2. Suggestions our guardrails rejected
+        if result["rejected"]:
+            st.warning(f"{len(result['rejected'])} AI suggestion(s) were rejected by validation:")
+            for reason in result["rejected"]:
+                st.caption(f"✗ {reason}")
+
+        # 3. Valid suggestions: the human edits, picks, then approves
+        if result["suggestions"]:
+            st.write(f"**Suggested tasks for {st.session_state.ai_pet}** "
+                     "(edit anything, untick what you don't want, then approve):")
+            rows = [
+                {
+                    "Keep": True,
+                    "Time": s["task"].time,
+                    "Task": s["task"].description,
+                    "Repeats": s["task"].frequency,
+                    "Priority": s["task"].priority,
+                    "Duration (min)": s["task"].duration,
+                    "Source": s["source"],
+                }
+                for s in result["suggestions"]
+            ]
+            edited = st.data_editor(
+                rows,
+                key=f"ai_editor_{st.session_state.ai_round}",
+                hide_index=True,
+                disabled=["Source"],
+                column_config={
+                    "Keep": st.column_config.CheckboxColumn(),
+                    "Time": st.column_config.TextColumn(help="24-hour HH:MM, e.g. 07:00"),
+                    "Repeats": st.column_config.SelectboxColumn(options=["once", "daily", "weekly"], required=True),
+                    "Priority": st.column_config.SelectboxColumn(options=["low", "medium", "high"], required=True),
+                    "Duration (min)": st.column_config.NumberColumn(min_value=1, max_value=240, step=1),
+                },
+            )
+            kept = [row for row in edited if row["Keep"]]
+
+            # Conflict preview, using the EDITED times
+            busy_times = {t.time for t in owner.get_all_tasks()
+                          if not t.completed and t.due_date == date.today()}
+            kept_times = [row["Time"] for row in kept]
+            for row in kept:
+                if row["Time"] in busy_times:
+                    st.warning(f"⚠️ {row['Task']} at {row['Time']} clashes with an existing task.")
+                elif kept_times.count(row["Time"]) > 1:
+                    st.warning(f"⚠️ {row['Task']} at {row['Time']} clashes with another suggestion.")
+
+            col1, col2 = st.columns(2)
+            if col1.button("✅ Approve selected"):
+                new_tasks = []
+                error_message = None
+                for row in kept:
+                    try:
+                        if not str(row["Task"]).strip():
+                            raise ValueError("Task name can't be empty.")
+                        new_tasks.append(Task(
+                            str(row["Task"]).strip(),
+                            str(row["Time"]).strip(),          # validate_time() runs here
+                            frequency=row["Repeats"],
+                            duration=int(row["Duration (min)"]),
+                            priority=row["Priority"],
+                        ))
+                    except (ValueError, TypeError) as error:
+                        error_message = f"{row['Task']}: {error}"
+                        break
+
+                if error_message:
+                    st.error(f"Please fix the table first. {error_message}")  # nothing is added
+                else:
+                    pet = owner.get_pet(st.session_state.ai_pet)
+                    for t in new_tasks:
+                        pet.add_task(t)
+                    edited_count = sum(1 for before, after in zip(rows, edited)
+                                       if after["Keep"] and after != before)
+                    logger.info("Human approved %d of %d AI suggestions for %s (%d edited)",
+                                len(new_tasks), len(rows), pet.name, edited_count)
+                    st.session_state.flash = f"Added {len(new_tasks)} AI-suggested task(s) for {pet.name}."
+                    del st.session_state.ai_result
+                    st.rerun()
+            if col2.button("Discard"):
+                logger.info("Human discarded all %d AI suggestions", len(result["suggestions"]))
+                del st.session_state.ai_result
+                st.rerun()
 
 st.divider()
 
@@ -133,6 +244,7 @@ elif todays:
 else:
     st.info("No tasks scheduled for today.")
 
+
 # --- Mark a task complete ---
 st.subheader("Mark a Task Complete")
 pending = scheduler.sort_tasks(scheduler.filter_tasks(completed=False, day=date.today()), by="time")
@@ -149,6 +261,7 @@ else:
             message += f" Next one scheduled for {next_task.due_date}."
         st.session_state.flash = message
         st.rerun()
+
 
 # --- Remove a task ---
 st.subheader("Remove a Task")
