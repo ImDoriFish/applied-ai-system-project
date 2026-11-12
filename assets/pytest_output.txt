@@ -1,0 +1,32 @@
+﻿============================= test session starts =============================
+platform win32 -- Python 3.13.0, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\khang\CodePath\final project\applied-ai-system-project\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\khang\CodePath\final project\applied-ai-system-project
+plugins: anyio-4.16.0
+collecting ... collected 23 items
+
+tests/test_ai_assistant.py::test_retrieve_puppy_question_finds_dog_feeding PASSED [  4%]
+tests/test_ai_assistant.py::test_retrieve_uses_pet_species_when_question_has_no_animal PASSED [  8%]
+tests/test_ai_assistant.py::test_retrieve_off_topic_question_finds_nothing PASSED [ 13%]
+tests/test_ai_assistant.py::test_to_tasks_accepts_valid_suggestion PASSED [ 17%]
+tests/test_ai_assistant.py::test_to_tasks_rejects_bad_time_frequency_priority_and_duration PASSED [ 21%]
+tests/test_ai_assistant.py::test_empty_question_is_refused PASSED        [ 26%]
+tests/test_ai_assistant.py::test_too_long_question_is_refused PASSED     [ 30%]
+tests/test_ai_assistant.py::test_emergency_question_gives_vet_message_and_no_tasks PASSED [ 34%]
+tests/test_ai_assistant.py::test_normal_question_is_not_an_emergency PASSED [ 39%]
+tests/test_ai_assistant.py::test_off_topic_question_says_no_notes PASSED [ 43%]
+tests/test_ai_assistant.py::test_ask_ai_returns_tasks_and_sources PASSED [ 47%]
+tests/test_ai_assistant.py::test_ask_ai_handles_broken_json PASSED       [ 52%]
+tests/test_ai_assistant.py::test_ask_ai_handles_api_failure PASSED       [ 56%]
+tests/test_pawpal.py::test_mark_complete_changes_status PASSED           [ 60%]
+tests/test_pawpal.py::test_add_task_increases_pet_task_count PASSED      [ 65%]
+tests/test_pawpal.py::test_sort_by_time_returns_chronological_order PASSED [ 69%]
+tests/test_pawpal.py::test_completing_daily_task_creates_task_for_next_day PASSED [ 73%]
+tests/test_pawpal.py::test_completing_one_time_task_creates_no_new_task PASSED [ 78%]
+tests/test_pawpal.py::test_completing_task_twice_does_not_duplicate PASSED [ 82%]
+tests/test_pawpal.py::test_detect_conflicts_flags_same_time PASSED       [ 86%]
+tests/test_pawpal.py::test_same_time_on_different_days_is_not_a_conflict PASSED [ 91%]
+tests/test_pawpal.py::test_completed_task_is_not_a_conflict PASSED       [ 95%]
+tests/test_pawpal.py::test_pet_with_no_tasks_gives_empty_schedule PASSED [100%]
+
+============================= 23 passed in 0.80s ==============================
