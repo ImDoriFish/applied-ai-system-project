@@ -149,3 +149,19 @@ else:
             message += f" Next one scheduled for {next_task.due_date}."
         st.session_state.flash = message
         st.rerun()
+
+# --- Remove a task ---
+st.subheader("Remove a Task")
+all_tasks = scheduler.sort_tasks(owner.get_all_tasks(), by="time")
+if not all_tasks:
+    st.info("No tasks to remove.")
+else:
+    remove_labels = [f"{t.due_date}  {t.time}  {t.description} ({t.pet_name})" for t in all_tasks]
+    remove_choice = st.selectbox(
+        "Task to remove", range(len(all_tasks)), format_func=lambda i: remove_labels[i]
+    )
+    if st.button("Remove"):
+        task = all_tasks[remove_choice]
+        owner.get_pet(task.pet_name).remove_task(task)
+        st.session_state.flash = f"🗑️ Removed {task.description} for {task.pet_name}."
+        st.rerun()
